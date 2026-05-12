@@ -1,175 +1,190 @@
 // ========================================
-// FUNCIONALIDAD DEL WHATSAPP WIDGET
+// Configuración general
+// ========================================
+const LUBRIMOTOR_WHATSAPP = '56932401276';
+
+function openWhatsApp(message) {
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${LUBRIMOTOR_WHATSAPP}?text=${encodedMessage}`, '_blank');
+}
+
+function getValue(id) {
+    const element = document.getElementById(id);
+    return element ? element.value.trim() : '';
+}
+
+// ========================================
+// Widget de WhatsApp
 // ========================================
 function toggleWhatsAppChat() {
     const chat = document.getElementById('whatsappChat');
-    chat.classList.toggle('active');
+
+    if (chat) {
+        chat.classList.toggle('active');
+    } else {
+        openWhatsApp('Hola, necesito información sobre Lubrimotor');
+    }
 }
 
 function sendQuickMessage(message) {
-    const phoneNumber = '56932401276';
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    window.open(whatsappURL, '_blank');
+    openWhatsApp(message);
 }
 
-// Cerrar chat al hacer clic fuera
 document.addEventListener('click', function(event) {
     const whatsappWidget = document.querySelector('.whatsapp-widget');
     const chat = document.getElementById('whatsappChat');
-    if (!whatsappWidget.contains(event.target) && chat.classList.contains('active')) {
-        // Solo cerrar si el clic fue fuera del widget
-        if (!event.target.closest('.whatsapp-button') && !event.target.closest('.whatsapp-chat')) {
-            chat.classList.remove('active');
-        }
+
+    if (!whatsappWidget || !chat || !chat.classList.contains('active')) {
+        return;
+    }
+
+    const clickedInsideWidget = whatsappWidget.contains(event.target);
+    const clickedChatControl = event.target.closest('.whatsapp-button, .whatsapp-chat');
+
+    if (!clickedInsideWidget && !clickedChatControl) {
+        chat.classList.remove('active');
     }
 });
 
 // ========================================
-// NAVEGACIÓN RESPONSIVE
+// Navegación responsive
 // ========================================
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 
-if (hamburger) {
+if (hamburger && navMenu) {
+    function closeMobileMenu() {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.classList.remove('menu-open');
+    }
+
     hamburger.addEventListener('click', function() {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
+        document.body.classList.toggle('menu-open', navMenu.classList.contains('active'));
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
     });
 }
 
-// Cerrar menú al hacer clic en un enlace
-const navLinks = document.querySelectorAll('.nav-link');
-navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    });
-});
-
 // ========================================
-// FORMULARIO DE CITAS
+// Formulario principal de reservas
 // ========================================
 const bookingForm = document.getElementById('booking-form');
 
 if (bookingForm) {
-    bookingForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+    bookingForm.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-        // Obtener datos del formulario
-        const nombre = document.getElementById('nombre').value;
-        const telefono = document.getElementById('telefono').value;
-        const email = document.getElementById('email').value;
-        const vehiculo = document.getElementById('vehiculo').value;
-        const servicio = document.getElementById('servicio').value;
-        const patente = document.getElementById('patente').value;
-        const fecha = document.getElementById('fecha').value;
-        const hora = document.getElementById('hora').value;
-        const comentarios = document.getElementById('comentarios').value;
+        const nombre = getValue('nombre');
+        const telefono = getValue('telefono');
+        const email = getValue('email');
+        const vehiculo = getValue('vehiculo');
+        const servicioSelect = document.getElementById('servicio');
+        const servicio = servicioSelect
+            ? servicioSelect.options[servicioSelect.selectedIndex].text
+            : getValue('servicio');
+        const patente = getValue('patente') || 'No especificada';
+        const fecha = getValue('fecha');
+        const hora = getValue('hora');
+        const comentarios = getValue('comentarios') || 'Ninguno';
 
-        // Crear mensaje para WhatsApp
-        let mensaje = `*NUEVA RESERVA - LUBRIMOTOR*\\n\\n`;
-        mensaje += `*Cliente:* ${nombre}\\n`;
-        mensaje += `*Teléfono:* ${telefono}\\n`;
-        mensaje += `*Email:* ${email}\\n`;
-        mensaje += `*Vehículo:* ${vehiculo}\\n`;
-        mensaje += `*Patente:* ${patente || 'No especificada'}\\n`;
-        mensaje += `*Servicio:* ${servicio}\\n`;
-        mensaje += `*Fecha:* ${fecha}\\n`;
-        mensaje += `*Hora:* ${hora}\\n`;
-        mensaje += `*Comentarios:* ${comentarios || 'Ninguno'}`;
+        const message = [
+            '*NUEVA RESERVA - LUBRIMOTOR*',
+            '',
+            `*Cliente:* ${nombre}`,
+            `*Teléfono:* ${telefono}`,
+            `*Email:* ${email}`,
+            `*Vehículo:* ${vehiculo}`,
+            `*Patente:* ${patente}`,
+            `*Servicio:* ${servicio}`,
+            `*Fecha:* ${fecha}`,
+            `*Hora:* ${hora}`,
+            `*Comentarios:* ${comentarios}`
+        ].join('\n');
 
-        // URL de WhatsApp
-        const phoneNumber = '56932401276';
-        const encodedMessage = encodeURIComponent(mensaje);
-        const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-        // Abrir WhatsApp
-        window.open(whatsappURL, '_blank');
-
-        // Mostrar confirmación
+        openWhatsApp(message);
         alert('✅ Tu reserva se ha enviado a WhatsApp. Pronto nos pondremos en contacto.');
-
-        // Limpiar formulario
         bookingForm.reset();
     });
 }
 
 // ========================================
-// NAVBAR EFECTO SCROLL
+// Navbar con efecto al hacer scroll
 // ========================================
 const navbar = document.getElementById('navbar');
-let lastScrollPosition = 0;
 
-window.addEventListener('scroll', function() {
-    const currentScrollPosition = window.pageYOffset;
+if (navbar) {
+    window.addEventListener('scroll', function() {
+        const hasScrolled = window.pageYOffset > 50;
 
-    if (currentScrollPosition > 50) {
-        navbar.style.background = 'rgba(10, 15, 28, 0.5)';
-        navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
-    } else {
-        navbar.style.background = 'rgba(10, 15, 28, 0.3)';
-        navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
-    }
-
-    lastScrollPosition = currentScrollPosition;
-});
-
-// ========================================
-// ANIMACIONES AL SCROLL
-// ========================================
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            observer.unobserve(entry.target);
-        }
+        navbar.style.background = hasScrolled
+            ? 'rgba(10, 15, 28, 0.5)'
+            : 'rgba(10, 15, 28, 0.3)';
+        navbar.style.boxShadow = hasScrolled
+            ? '0 4px 20px rgba(0, 0, 0, 0.3)'
+            : '0 4px 20px rgba(0, 0, 0, 0.2)';
     });
-}, observerOptions);
-
-// Observar tarjetas de servicios
-const cards = document.querySelectorAll('.service-card');
-cards.forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'all 0.6s ease';
-    observer.observe(card);
-});
+}
 
 // ========================================
-// SMOOTH SCROLL PARA BOTONES
+// Animaciones al hacer scroll
 // ========================================
-const anchorLinks = document.querySelectorAll('a[href^="#"]');
-anchorLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
+if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.service-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'all 0.6s ease';
+        observer.observe(card);
+    });
+}
+
+// ========================================
+// Desplazamiento suave para enlaces internos
+// ========================================
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(event) {
         const href = this.getAttribute('href');
-        if (href !== '#' && document.querySelector(href)) {
-            e.preventDefault();
-            const target = document.querySelector(href);
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+        const target = href && href !== '#' ? document.querySelector(href) : null;
+
+        if (!target) {
+            return;
         }
+
+        event.preventDefault();
+        target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
     });
 });
 
 // ========================================
-// VALIDACIÓN DE EMAIL EN TIEMPO REAL
+// Validación visual del email
 // ========================================
 const emailInput = document.getElementById('email');
 
 if (emailInput) {
     emailInput.addEventListener('blur', function() {
-        const email = this.value;
+        const email = this.value.trim();
         const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        
+
         if (email && !isValid) {
             this.style.borderColor = '#ff6b6b';
             this.style.boxShadow = '0 0 0 3px rgba(255, 107, 107, 0.2)';
@@ -181,31 +196,30 @@ if (emailInput) {
 }
 
 // ========================================
-// FORMATO DE TELÉFONO
+// Formato del teléfono
 // ========================================
 const telefonoInput = document.getElementById('telefono');
 
 if (telefonoInput) {
     telefonoInput.addEventListener('input', function() {
-        // Remover caracteres no numéricos
         let value = this.value.replace(/\D/g, '');
-        
-        // Limitar a 9 dígitos
+
+        if (value.startsWith('56')) {
+            value = value.slice(2);
+        }
+
         if (value.length > 9) {
             value = value.slice(0, 9);
         }
-        
-        // Formatear: +56 9 XXXX XXXX
-        if (value.length > 0) {
-            if (value.length <= 1) {
-                this.value = value;
-            } else if (value.length <= 4) {
-                this.value = '+56 ' + value;
-            } else if (value.length <= 8) {
-                this.value = '+56 9 ' + value.slice(1, 5) + ' ' + value.slice(5);
-            } else {
-                this.value = '+56 9 ' + value.slice(1, 5) + ' ' + value.slice(5, 9);
-            }
+
+        if (!value) {
+            this.value = '';
+        } else if (value.length <= 1) {
+            this.value = value;
+        } else if (value.length <= 5) {
+            this.value = `+56 ${value}`;
+        } else {
+            this.value = `+56 ${value.slice(0, 1)} ${value.slice(1, 5)} ${value.slice(5, 9)}`.trim();
         }
     });
 }

@@ -802,3 +802,340 @@
         padding: 3rem 5%;
     }
 }
+
+/* ========================================
+   RESPONSIVE FINAL PARA PÁGINAS INTERNAS
+   ======================================== */
+.service-hero-content,
+.container {
+    width: min(100%, 1200px);
+}
+
+@media (max-width: 768px) {
+    .service-hero {
+        min-height: auto;
+        height: auto;
+        padding: 4.5rem 1rem 3rem;
+        background-position: center;
+    }
+
+    .service-hero-content {
+        padding: 0;
+        max-width: 430px;
+    }
+
+    .breadcrumb {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+        overflow-wrap: anywhere;
+    }
+
+    .service-hero h1 {
+        font-size: clamp(2rem, 10vw, 2.7rem);
+        line-height: 1.08;
+        margin-bottom: 1rem;
+        overflow-wrap: anywhere;
+    }
+
+    .service-subtitle {
+        font-size: 1rem;
+        line-height: 1.55;
+        margin-bottom: 1.4rem;
+    }
+
+    .service-badges {
+        gap: 0.65rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .service-badges .badge {
+        width: 100%;
+        justify-content: center;
+        border-radius: 14px;
+        padding: 0.75rem 0.9rem;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    .btn-hero-service,
+    .btn-related {
+        width: 100%;
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0.9rem 1rem;
+        touch-action: manipulation;
+    }
+
+    .quick-info,
+    .service-importance,
+    .service-includes,
+    .warning-signs,
+    .oil-types,
+    .service-process,
+    .faq-section,
+    .related-services {
+        padding: 3rem 1rem;
+    }
+
+    .service-importance h2,
+    .service-includes h2,
+    .warning-signs h2,
+    .oil-types h2,
+    .service-process h2,
+    .faq-section h2,
+    .related-services h2 {
+        font-size: clamp(1.8rem, 8vw, 2.3rem);
+        line-height: 1.15;
+        margin-bottom: 1rem;
+    }
+
+    .section-intro {
+        font-size: 1rem;
+        line-height: 1.65;
+        margin-bottom: 2rem;
+    }
+
+    .quick-info-grid,
+    .importance-grid,
+    .includes-grid,
+    .signs-grid,
+    .oil-types-grid,
+    .faq-grid,
+    .related-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+    }
+
+    .quick-info-item,
+    .importance-card,
+    .include-item,
+    .sign-card,
+    .oil-card,
+    .faq-item,
+    .related-card {
+        padding: 1.15rem;
+        border-radius: 14px;
+        width: 100%;
+    }
+
+    .quick-icon,
+    .importance-icon,
+    .related-card i {
+        font-size: 2.3rem;
+    }
+
+    .quick-info-item p {
+        font-size: 1.05rem;
+        overflow-wrap: anywhere;
+    }
+
+    .include-item {
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .include-item:hover,
+    .step-content:hover {
+        transform: none;
+    }
+
+    .sign-header {
+        align-items: flex-start;
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .sign-header h3 {
+        font-size: 1.2rem;
+    }
+
+    .sign-card li,
+    .oil-features li {
+        gap: 0.75rem;
+        font-size: 0.95rem;
+    }
+
+    .oil-card.featured,
+    .oil-card:hover {
+        transform: none;
+    }
+
+    .oil-card h3 {
+        font-size: 1.4rem;
+    }
+
+    .oil-price {
+        font-size: 1.7rem;
+    }
+
+    .badge-popular {
+        right: 50%;
+        transform: translateX(50%);
+        white-space: nowrap;
+    }
+
+    .process-step {
+        flex-direction: row;
+        gap: 1rem;
+        margin-bottom: 1.4rem;
+    }
+
+    .process-step::after {
+        left: 22px;
+        top: 52px;
+        height: calc(100% + 10px);
+    }
+
+    .step-number {
+        width: 44px;
+        height: 44px;
+        font-size: 1.15rem;
+    }
+
+    .step-content {
+        padding: 1rem;
+        border-radius: 14px;
+    }
+
+    .step-content h3,
+    .faq-item h3,
+    .related-card h3 {
+        font-size: 1.1rem;
+        line-height: 1.35;
+        overflow-wrap: anywhere;
+    }
+
+    .faq-item h3 {
+        gap: 0.65rem;
+    }
+
+    .related-card p {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 430px) {
+    .service-hero {
+        padding: 4rem 0.85rem 2.6rem;
+    }
+
+    .quick-info,
+    .service-importance,
+    .service-includes,
+    .warning-signs,
+    .oil-types,
+    .service-process,
+    .faq-section,
+    .related-services {
+        padding-left: 0.85rem;
+        padding-right: 0.85rem;
+    }
+
+    .include-item {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .process-step {
+        gap: 0.8rem;
+    }
+
+    .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .process-step::after {
+        left: 20px;
+        top: 48px;
+    }
+}
+
+@media (max-width: 360px) {
+    .service-hero {
+        padding-top: 3.4rem;
+        padding-bottom: 2.2rem;
+    }
+
+    .service-hero h1 {
+        font-size: 1.85rem;
+    }
+
+    .service-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .breadcrumb {
+        font-size: 0.8rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .service-badges .badge,
+    .btn-hero-service,
+    .btn-related {
+        font-size: 0.9rem;
+    }
+
+    .service-badges .badge {
+        padding: 0.65rem 0.75rem;
+    }
+
+    .quick-info,
+    .service-importance,
+    .service-includes,
+    .warning-signs,
+    .oil-types,
+    .service-process,
+    .faq-section,
+    .related-services {
+        padding-top: 2.35rem;
+        padding-bottom: 2.35rem;
+    }
+
+    .quick-info-item,
+    .importance-card,
+    .include-item,
+    .sign-card,
+    .oil-card,
+    .faq-item,
+    .related-card,
+    .step-content {
+        padding: 0.9rem;
+    }
+
+    .service-importance h2,
+    .service-includes h2,
+    .warning-signs h2,
+    .oil-types h2,
+    .service-process h2,
+    .faq-section h2,
+    .related-services h2 {
+        font-size: 1.65rem;
+    }
+
+    .process-step {
+        gap: 0.65rem;
+    }
+
+    .step-number {
+        width: 36px;
+        height: 36px;
+    }
+
+    .process-step::after {
+        left: 18px;
+        top: 44px;
+    }
+
+    .step-content h3,
+    .faq-item h3,
+    .related-card h3 {
+        font-size: 1rem;
+    }
+}
