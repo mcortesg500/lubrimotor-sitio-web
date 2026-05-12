@@ -1139,3 +1139,328 @@
         font-size: 1rem;
     }
 }
+
+/* ========================================
+   MOBILE POLISH - PÁGINAS DE SERVICIOS
+   ======================================== */
+@media (max-width: 768px) {
+    .service-hero {
+        align-items: flex-end;
+        padding-bottom: 2.6rem;
+        border-bottom-color: rgba(255, 159, 67, 0.2);
+    }
+
+    .service-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(5, 8, 16, 0.18) 0%, rgba(5, 8, 16, 0.72) 58%, rgba(5, 8, 16, 0.92) 100%);
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .service-hero-content {
+        background: linear-gradient(180deg, rgba(10, 15, 28, 0.06), rgba(10, 15, 28, 0.18));
+        border-radius: 18px;
+    }
+
+    .breadcrumb {
+        color: #d0d4dc;
+    }
+
+    .service-hero h1 {
+        letter-spacing: 0;
+        text-shadow: 0 3px 18px rgba(0, 0, 0, 0.9);
+    }
+
+    .service-subtitle {
+        color: #f0f2f5;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
+    }
+
+    .service-badges .badge {
+        background: rgba(255, 159, 67, 0.14);
+        border-color: rgba(255, 159, 67, 0.32);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+    }
+
+    .btn-hero-service,
+    .btn-related {
+        border-radius: 14px;
+        box-shadow: 0 12px 28px rgba(229, 91, 0, 0.34);
+    }
+
+    .quick-info,
+    .service-importance,
+    .service-includes,
+    .warning-signs,
+    .oil-types,
+    .service-process,
+    .faq-section,
+    .related-services {
+        border-top-color: rgba(255, 159, 67, 0.12);
+    }
+
+    .quick-info-item,
+    .importance-card,
+    .include-item,
+    .sign-card,
+    .oil-card,
+    .faq-item,
+    .related-card,
+    .step-content {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035));
+        border-color: rgba(255, 159, 67, 0.16);
+        box-shadow: 0 14px 34px rgba(0, 0, 0, 0.26);
+    }
+
+    .quick-info-item h3,
+    .importance-card h3,
+    .include-item h4,
+    .step-content h3,
+    .faq-item h3,
+    .related-card h3 {
+        letter-spacing: 0;
+    }
+
+    .include-item i {
+        margin-top: 0;
+    }
+
+    .sign-card.urgent,
+    .sign-card.preventive {
+        border-width: 1px;
+    }
+
+    .process-step {
+        align-items: flex-start;
+    }
+
+    .step-number {
+        box-shadow: 0 10px 22px rgba(229, 91, 0, 0.32);
+    }
+
+    .faq-item h3 i {
+        margin-top: 0.05rem;
+    }
+
+    .related-card p,
+    .faq-item p,
+    .step-content p,
+    .include-item p,
+    .importance-card p {
+        color: #cfd3da;
+    }
+}
+
+@media (max-width: 430px) {
+    .service-hero {
+        padding-bottom: 2.25rem;
+    }
+
+    .service-badges {
+        margin-bottom: 1.15rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .service-hero {
+        padding-bottom: 2rem;
+    }
+
+    .btn-hero-service,
+    .btn-related {
+        width: 100%;
+    }
+}
+
+/* ========================================
+   MOBILE DETAIL PASS - SERVICIOS
+   ======================================== */
+@media (max-width: 768px) {
+    .service-hero {
+        box-shadow: inset 0 -90px 90px rgba(5, 8, 16, 0.72);
+    }
+
+    .service-hero h1,
+    .service-importance h2,
+    .service-includes h2,
+    .warning-signs h2,
+    .oil-types h2,
+    .service-process h2,
+    .faq-section h2,
+    .related-services h2 {
+        text-wrap: balance;
+    }
+
+    .service-hero h1 {
+        max-width: 12ch;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .service-subtitle {
+        max-width: 34ch;
+        margin-left: auto;
+        margin-right: auto;
+        color: #e8ebef;
+    }
+
+    .breadcrumb {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 34ch;
+    }
+
+    .service-badges {
+        gap: 0.55rem;
+    }
+
+    .service-badges .badge {
+        min-height: 42px;
+        font-weight: 650;
+    }
+
+    .btn-hero-service,
+    .btn-related {
+        min-height: 50px;
+        font-weight: 750;
+        letter-spacing: 0.01em;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .quick-info,
+    .service-importance,
+    .service-includes,
+    .warning-signs,
+    .oil-types,
+    .service-process,
+    .faq-section,
+    .related-services {
+        padding-top: 2.65rem;
+        padding-bottom: 2.65rem;
+    }
+
+    .service-importance h2,
+    .service-includes h2,
+    .warning-signs h2,
+    .oil-types h2,
+    .service-process h2,
+    .faq-section h2,
+    .related-services h2 {
+        font-size: clamp(1.62rem, 7vw, 2.05rem);
+    }
+
+    .section-intro {
+        max-width: 34rem;
+        font-size: 0.98rem;
+        line-height: 1.62;
+        margin-bottom: 1.65rem;
+    }
+
+    .quick-info-grid,
+    .importance-grid,
+    .includes-grid,
+    .signs-grid,
+    .oil-types-grid,
+    .faq-grid,
+    .related-grid {
+        gap: 1.05rem;
+    }
+
+    .quick-info-item,
+    .importance-card,
+    .include-item,
+    .sign-card,
+    .oil-card,
+    .faq-item,
+    .related-card,
+    .step-content {
+        border-radius: 18px;
+        padding: 1rem;
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.25);
+    }
+
+    .quick-icon,
+    .importance-icon,
+    .related-card i {
+        font-size: 2.05rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .quick-info-item h3,
+    .importance-card h3,
+    .include-item h4,
+    .sign-header h3,
+    .step-content h3,
+    .faq-item h3,
+    .related-card h3 {
+        font-size: 1.05rem;
+    }
+
+    .quick-info-item p,
+    .importance-card p,
+    .include-item p,
+    .sign-card li,
+    .step-content p,
+    .faq-item p,
+    .related-card p {
+        font-size: 0.93rem;
+        line-height: 1.55;
+    }
+
+    .sign-card li {
+        padding: 0.75rem 0;
+    }
+
+    .process-step {
+        margin-bottom: 1.05rem;
+    }
+
+    .step-number {
+        box-shadow: 0 8px 18px rgba(229, 91, 0, 0.3);
+    }
+}
+
+@media (max-width: 430px) {
+    .service-hero h1 {
+        max-width: 11ch;
+    }
+
+    .quick-info,
+    .service-importance,
+    .service-includes,
+    .warning-signs,
+    .oil-types,
+    .service-process,
+    .faq-section,
+    .related-services {
+        padding-top: 2.35rem;
+        padding-bottom: 2.35rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .quick-info,
+    .service-importance,
+    .service-includes,
+    .warning-signs,
+    .oil-types,
+    .service-process,
+    .faq-section,
+    .related-services {
+        padding-top: 2.05rem;
+        padding-bottom: 2.05rem;
+    }
+
+    .quick-info-item,
+    .importance-card,
+    .include-item,
+    .sign-card,
+    .oil-card,
+    .faq-item,
+    .related-card,
+    .step-content {
+        padding: 0.82rem;
+    }
+}
