@@ -1733,3 +1733,63 @@ video {
         border-radius: 16px;
     }
 }
+
+/* Hero móvil: encuadre y legibilidad de la imagen principal */
+@media (max-width: 768px) {
+    .hero {
+        min-height: clamp(420px, 72svh, 560px);
+        padding: 5rem 1rem 2.75rem;
+        background-image:
+            linear-gradient(rgba(5, 8, 16, 0.72), rgba(10, 15, 28, 0.82)),
+            url('img/hero.jpg');
+        background-size: cover;
+        background-position: center 42%;
+        background-repeat: no-repeat;
+    }
+
+    .hero-text {
+        max-width: 360px;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .hero-text h1 {
+        font-size: clamp(2rem, 9.5vw, 2.65rem);
+        line-height: 1.08;
+        margin-bottom: 0.85rem;
+    }
+
+    .hero-text p {
+        font-size: clamp(0.98rem, 4.2vw, 1.12rem);
+        line-height: 1.45;
+        margin-bottom: 1.35rem;
+    }
+}
+
+@media (max-width: 430px) {
+    .hero {
+        min-height: clamp(390px, 68svh, 510px);
+        padding: 4.4rem 0.9rem 2.25rem;
+        background-position: 54% 42%;
+    }
+
+    .hero-text {
+        max-width: 330px;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero {
+        min-height: 380px;
+        padding: 4rem 0.8rem 2rem;
+        background-position: 56% 42%;
+    }
+
+    .hero-text h1 {
+        font-size: 1.9rem;
+    }
+
+    .hero-text p {
+        font-size: 0.96rem;
+    }
+}
