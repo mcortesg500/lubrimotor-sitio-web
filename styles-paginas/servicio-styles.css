@@ -1,0 +1,804 @@
+/* ========================================
+   ESTILOS COMPLETOS PARA PÁGINAS DE SERVICIOS
+   Lubrimotor - Servicios Individuales
+   ======================================== */
+
+/* SERVICE HERO */
+.service-hero {
+    height: 70vh;
+    min-height: 500px;
+    background: linear-gradient(rgba(10, 15, 28, 0.7), rgba(26, 31, 46, 0.8)),
+                url('../img/hero.jpg') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    border-bottom: 2px solid rgba(255, 159, 67, 0.3);
+}
+
+.service-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 159, 67, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.service-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    padding: 2rem;
+}
+
+.breadcrumb {
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: #b0b0b0;
+}
+
+.breadcrumb a {
+    color: #ff9f43;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    color: #ffffff;
+}
+
+.breadcrumb span {
+    color: #e4e6ea;
+}
+
+.service-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
+    font-weight: 800;
+}
+
+.service-subtitle {
+    font-size: 1.4rem;
+    color: #d0d0d0;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+    line-height: 1.6;
+}
+
+.service-badges {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+}
+
+.service-badges .badge {
+    background: rgba(255, 159, 67, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 159, 67, 0.4);
+    padding: 0.7rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: all 0.3s ease;
+}
+
+.service-badges .badge:hover {
+    background: rgba(255, 159, 67, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-hero-service {
+    display: inline-block;
+    padding: 1.2rem 3rem;
+    background: linear-gradient(135deg, #ff9f43, #e55b00);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 25px rgba(255, 159, 67, 0.5);
+}
+
+.btn-hero-service:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 35px rgba(255, 159, 67, 0.7);
+}
+
+/* QUICK INFO */
+.quick-info {
+    padding: 4rem 5%;
+    background: rgba(10, 15, 28, 0.6);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.quick-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.quick-info-item {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 159, 67, 0.2);
+    border-radius: 15px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.quick-info-item:hover {
+    background: rgba(255, 159, 67, 0.1);
+    border-color: rgba(255, 159, 67, 0.5);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(255, 159, 67, 0.3);
+}
+
+.quick-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.quick-info-item h3 {
+    color: #ff9f43;
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.quick-info-item p {
+    color: #e4e6ea;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+/* SERVICE IMPORTANCE */
+.service-importance {
+    padding: 5rem 5%;
+    background: rgba(10, 15, 28, 0.4);
+    backdrop-filter: blur(20px);
+}
+
+.service-importance h2,
+.service-includes h2,
+.warning-signs h2,
+.oil-types h2,
+.service-process h2,
+.faq-section h2,
+.related-services h2 {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #ff9f43;
+    font-weight: 800;
+}
+
+.section-intro {
+    text-align: center;
+    font-size: 1.15rem;
+    color: #c0c0c0;
+    margin-bottom: 3.5rem;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+
+.importance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.importance-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.importance-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 159, 67, 0.4);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(255, 159, 67, 0.2);
+}
+
+.importance-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.importance-card h3 {
+    color: #ff9f43;
+    margin-bottom: 1.2rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.importance-card p {
+    color: #c0c0c0;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+/* SERVICE INCLUDES */
+.service-includes {
+    padding: 5rem 5%;
+    background: rgba(10, 15, 28, 0.3);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.includes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.include-item {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.include-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 159, 67, 0.4);
+    transform: translateX(8px);
+}
+
+.include-item i {
+    color: #28a745;
+    font-size: 1.8rem;
+    flex-shrink: 0;
+    margin-top: 0.3rem;
+}
+
+.include-item h4 {
+    color: #ff9f43;
+    margin-bottom: 0.7rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.include-item p {
+    color: #c0c0c0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* WARNING SIGNS */
+.warning-signs {
+    padding: 5rem 5%;
+    background: rgba(10, 15, 28, 0.4);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.signs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.sign-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 2px solid;
+    transition: all 0.3s ease;
+}
+
+.sign-card:hover {
+    transform: translateY(-5px);
+}
+
+.sign-card.urgent {
+    border-color: rgba(255, 107, 107, 0.5);
+    background: rgba(255, 107, 107, 0.05);
+}
+
+.sign-card.urgent:hover {
+    border-color: rgba(255, 107, 107, 0.8);
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+}
+
+.sign-card.preventive {
+    border-color: rgba(40, 167, 69, 0.5);
+    background: rgba(40, 167, 69, 0.05);
+}
+
+.sign-card.preventive:hover {
+    border-color: rgba(40, 167, 69, 0.8);
+    box-shadow: 0 10px 30px rgba(40, 167, 69, 0.3);
+}
+
+.sign-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.sign-header i {
+    font-size: 2.5rem;
+}
+
+.sign-card.urgent .sign-header i {
+    color: #ff6b6b;
+}
+
+.sign-card.preventive .sign-header i {
+    color: #28a745;
+}
+
+.sign-header h3 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.sign-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sign-card li {
+    padding: 1rem 0;
+    color: #e4e6ea;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.sign-card li:last-child {
+    border-bottom: none;
+}
+
+.sign-card.urgent li i {
+    color: #ff6b6b;
+    margin-top: 0.2rem;
+}
+
+.sign-card.preventive li i {
+    color: #28a745;
+    margin-top: 0.2rem;
+}
+
+/* OIL TYPES */
+.oil-types {
+    padding: 5rem 5%;
+    background: rgba(10, 15, 28, 0.3);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.oil-types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.oil-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.oil-card.featured {
+    border-color: rgba(255, 159, 67, 0.6);
+    background: rgba(255, 159, 67, 0.1);
+    box-shadow: 0 10px 40px rgba(255, 159, 67, 0.3);
+    transform: scale(1.05);
+}
+
+.oil-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(255, 159, 67, 0.5);
+    box-shadow: 0 15px 45px rgba(255, 159, 67, 0.4);
+}
+
+.badge-popular {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: linear-gradient(135deg, #ff9f43, #e55b00);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(255, 159, 67, 0.5);
+}
+
+.oil-badge {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.oil-badge.mineral {
+    background: rgba(100, 100, 255, 0.2);
+    color: #6464ff;
+    border: 2px solid rgba(100, 100, 255, 0.5);
+}
+
+.oil-badge.semi {
+    background: rgba(255, 159, 67, 0.2);
+    color: #ff9f43;
+    border: 2px solid rgba(255, 159, 67, 0.5);
+}
+
+.oil-badge.synthetic {
+    background: rgba(255, 215, 0, 0.2);
+    color: #FFD700;
+    border: 2px solid rgba(255, 215, 0, 0.5);
+}
+
+.oil-card h3 {
+    color: #ffffff;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.oil-price {
+    font-size: 2.2rem;
+    color: #ff9f43;
+    font-weight: 800;
+    margin-bottom: 2rem;
+}
+
+.oil-features {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.oil-features li {
+    padding: 1rem 0;
+    color: #e4e6ea;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.oil-features li:last-child {
+    border-bottom: none;
+}
+
+.oil-features li i {
+    color: #ff9f43;
+    font-size: 1.1rem;
+}
+
+.oil-brands {
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.oil-brands small {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+}
+
+/* SERVICE PROCESS */
+.service-process {
+    padding: 5rem 5%;
+    background: rgba(10, 15, 28, 0.4);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.process-timeline {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.process-step {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.process-step::after {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 70px;
+    width: 3px;
+    height: calc(100% + 30px);
+    background: linear-gradient(180deg, rgba(255, 159, 67, 0.6), rgba(255, 159, 67, 0.1));
+}
+
+.process-step:last-child::after {
+    display: none;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #ff9f43, #e55b00);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 5px 20px rgba(255, 159, 67, 0.5);
+    z-index: 2;
+    position: relative;
+}
+
+.step-content {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.step-content:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 159, 67, 0.4);
+    transform: translateX(10px);
+}
+
+.step-content h3 {
+    color: #ff9f43;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.step-content p {
+    color: #c0c0c0;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+/* FAQ SECTION */
+.faq-section {
+    padding: 5rem 5%;
+    background: rgba(10, 15, 28, 0.3);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2.5rem;
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 159, 67, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 159, 67, 0.2);
+}
+
+.faq-item h3 {
+    color: #ff9f43;
+    margin-bottom: 1.2rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    line-height: 1.5;
+}
+
+.faq-item h3 i {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    font-size: 1.3rem;
+}
+
+.faq-item p {
+    color: #c0c0c0;
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+/* RELATED SERVICES */
+.related-services {
+    padding: 5rem 5%;
+    background: rgba(10, 15, 28, 0.4);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.related-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.related-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 159, 67, 0.4);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(255, 159, 67, 0.2);
+}
+
+.related-card i {
+    font-size: 3.5rem;
+    color: #ff9f43;
+    margin-bottom: 1.5rem;
+}
+
+.related-card h3 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.related-card p {
+    color: #c0c0c0;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.btn-related {
+    display: inline-block;
+    padding: 0.7rem 1.8rem;
+    background: rgba(255, 159, 67, 0.2);
+    border: 1px solid rgba(255, 159, 67, 0.4);
+    color: #ff9f43;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-related:hover {
+    background: rgba(255, 159, 67, 0.3);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .service-hero {
+        height: 60vh;
+    }
+
+    .service-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .service-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .service-badges {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .process-step {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .process-step::after {
+        left: 30px;
+        top: 70px;
+    }
+
+    .quick-info-grid,
+    .importance-grid,
+    .includes-grid,
+    .signs-grid,
+    .oil-types-grid,
+    .faq-grid,
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .oil-card.featured {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 480px) {
+    .service-hero h1 {
+        font-size: 2rem;
+    }
+
+    .service-hero {
+        height: 50vh;
+    }
+
+    .quick-info {
+        padding: 3rem 5%;
+    }
+
+    .service-importance,
+    .service-includes,
+    .warning-signs,
+    .oil-types,
+    .service-process,
+    .faq-section,
+    .related-services {
+        padding: 3rem 5%;
+    }
+}
