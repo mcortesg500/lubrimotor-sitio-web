@@ -21,6 +21,9 @@ const SUNDAY_CLOSED_MESSAGE = 'Los domingos estamos cerrados. Por favor seleccio
 const INVALID_TIME_MESSAGE = 'Por favor selecciona un horario disponible para la fecha elegida.';
 const WEEKDAY_HOURS = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
 const SATURDAY_HOURS = ['09:00', '10:00', '11:00', '12:00', '13:00'];
+const TIME_PLACEHOLDER_INITIAL = 'Selecciona una fecha primero';
+const TIME_PLACEHOLDER_DEFAULT = 'Selecciona horario';
+const TIME_PLACEHOLDER_CLOSED = 'Domingo cerrado';
 
 function getTodayDateString() {
     const now = new Date();
@@ -35,7 +38,7 @@ function getLocalDateFromInput(value) {
 
 function getAllowedHoursForDate(value) {
     if (!value) {
-        return WEEKDAY_HOURS;
+        return [];
     }
 
     const day = getLocalDateFromInput(value).getDay();
@@ -56,14 +59,13 @@ function getTimeSelectForDateInput(dateInput) {
     return form ? form.querySelector('select[name="hora"], select#hora') : null;
 }
 
-function renderTimeOptions(select, hours) {
+function renderTimeOptions(select, hours, placeholderText, disabled = false) {
     if (!select) {
         return;
     }
 
     const selectedValue = select.value;
-    const placeholder = select.dataset.placeholder || select.querySelector('option[value=""]')?.textContent || 'Selecciona horario';
-    select.dataset.placeholder = placeholder;
+    const placeholder = placeholderText || TIME_PLACEHOLDER_DEFAULT;
     select.innerHTML = '';
 
     const placeholderOption = document.createElement('option');
@@ -79,15 +81,23 @@ function renderTimeOptions(select, hours) {
     });
 
     select.value = hours.includes(selectedValue) ? selectedValue : '';
+    select.disabled = disabled;
 }
 
 function updateScheduleForDateInput(input, shouldReport = false) {
     const timeSelect = getTimeSelectForDateInput(input);
     const allowedHours = getAllowedHoursForDate(input.value);
+    const selectedDay = input.value ? getLocalDateFromInput(input.value).getDay() : null;
 
-    renderTimeOptions(timeSelect, allowedHours);
+    if (!input.value) {
+        renderTimeOptions(timeSelect, [], TIME_PLACEHOLDER_INITIAL, true);
+    } else if (selectedDay === 0) {
+        renderTimeOptions(timeSelect, [], TIME_PLACEHOLDER_CLOSED, true);
+    } else {
+        renderTimeOptions(timeSelect, allowedHours, TIME_PLACEHOLDER_DEFAULT, false);
+    }
 
-    if (input.value && getLocalDateFromInput(input.value).getDay() === 0) {
+    if (input.value && selectedDay === 0) {
         input.setCustomValidity(SUNDAY_CLOSED_MESSAGE);
 
         if (shouldReport) {
@@ -247,7 +257,6 @@ if (bookingForm) {
         }
 
         const nombre = getValue('nombre');
-        const telefono = getValue('telefono');
         const email = getValue('email');
         const vehiculo = getValue('vehiculo');
         const servicioSelect = document.getElementById('servicio');
@@ -263,7 +272,6 @@ if (bookingForm) {
             '*NUEVA RESERVA - LUBRIMOTOR*',
             '',
             `*Cliente:* ${nombre}`,
-            `*Teléfono:* ${telefono}`,
             `*Email:* ${email}`,
             `*Vehículo:* ${vehiculo}`,
             `*Patente:* ${patente}`,
@@ -362,35 +370,6 @@ if (emailInput) {
         } else {
             this.style.borderColor = 'rgba(78, 205, 196, 0.4)';
             this.style.boxShadow = '';
-        }
-    });
-}
-
-// ========================================
-// Formato del teléfono
-// ========================================
-const telefonoInput = document.getElementById('telefono');
-
-if (telefonoInput) {
-    telefonoInput.addEventListener('input', function() {
-        let value = this.value.replace(/\D/g, '');
-
-        if (value.startsWith('56')) {
-            value = value.slice(2);
-        }
-
-        if (value.length > 9) {
-            value = value.slice(0, 9);
-        }
-
-        if (!value) {
-            this.value = '';
-        } else if (value.length <= 1) {
-            this.value = value;
-        } else if (value.length <= 5) {
-            this.value = `+56 ${value}`;
-        } else {
-            this.value = `+56 ${value.slice(0, 1)} ${value.slice(1, 5)} ${value.slice(5, 9)}`.trim();
         }
     });
 }

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -146,7 +146,6 @@
             <form class="formulario-citas service-whatsapp-form" data-service="Aceite Diferencial y Transferencia">
                 <div class="form-row">
                     <div class="form-group"><label for="nombre"><i class="fas fa-user"></i> Nombre completo *</label><input type="text" id="nombre" name="nombre" required placeholder="Juan Perez"></div>
-                    <div class="form-group"><label for="telefono"><i class="fas fa-phone"></i> Teléfono *</label><input type="tel" id="telefono" name="telefono" required placeholder="+56 9 1234 5678"></div>
                 </div>
                 <div class="form-row">
                     <div class="form-group"><label for="vehiculo"><i class="fas fa-car"></i> Vehículo *</label><input type="text" id="vehiculo" name="vehiculo" required placeholder="Ej: Toyota Hilux 2018"></div>
@@ -154,6 +153,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group"><label for="fecha"><i class="fas fa-calendar"></i> Fecha preferida</label><input type="date" id="fecha" name="fecha"></div>
+                    <div class="form-group"><label for="hora"><i class="fas fa-clock"></i> Horario Preferido</label><select id="hora" name="hora" required><option value="">Selecciona una fecha primero</option></select></div>
                     <div class="form-group"><label for="urgencia"><i class="fas fa-clipboard-check"></i> Necesidad</label><select id="urgencia" name="urgencia"><option value="Cotizacion">Cotizacion</option><option value="Agendar hora">Agendar hora</option><option value="Tengo una falla o sintoma">Tengo una falla o sintoma</option><option value="Necesito asesoria">Necesito asesoria</option></select></div>
                 </div>
                 <div class="form-group"><label for="comentarios"><i class="fas fa-comment"></i> Comentarios</label><textarea id="comentarios" name="comentarios" rows="3" placeholder="Cuéntanos que necesitas revisar o que síntomas notas."></textarea></div>
@@ -212,18 +212,18 @@
             const form = e.currentTarget;
             const servicio = form.dataset.service;
             const nombre = document.getElementById('nombre').value;
-            const telefono = document.getElementById('telefono').value;
             const vehiculo = document.getElementById('vehiculo').value;
             const patente = document.getElementById('patente').value.toUpperCase();
             const fecha = document.getElementById('fecha').value;
+            const hora = document.getElementById('hora') ? document.getElementById('hora').value : '';
             const urgencia = document.getElementById('urgencia').value;
             const comentarios = document.getElementById('comentarios').value;
             let mensaje = '*SOLICITUD: ' + servicio.toUpperCase() + '*%0A%0A';
             mensaje += '*Nombre:* ' + nombre + '%0A';
-            mensaje += '*Teléfono:* ' + telefono + '%0A';
             mensaje += '*Vehículo:* ' + vehiculo + '%0A';
             if (patente) mensaje += '*Patente:* ' + patente + '%0A';
             if (fecha) mensaje += '*Fecha preferida:* ' + fecha + '%0A';
+            if (hora) mensaje += '*Horario preferido:* ' + hora + '%0A';
             mensaje += '*Necesidad:* ' + urgencia + '%0A';
             if (comentarios) mensaje += '*Comentarios:* ' + comentarios + '%0A';
             mensaje += '%0A_Mensaje enviado desde lubrimotor.cl_';

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -381,10 +381,6 @@
                         <label for="nombre"><i class="fas fa-user"></i> Nombre Completo *</label>
                         <input type="text" id="nombre" name="nombre" required placeholder="Juan Pérez">
                     </div>
-                    <div class="form-group">
-                        <label for="telefono"><i class="fas fa-phone"></i> Teléfono *</label>
-                        <input type="tel" id="telefono" name="telefono" required placeholder="+56 9 1234 5678">
-                    </div>
                 </div>
 
                 <div class="form-row">
@@ -412,6 +408,15 @@
                     <div class="form-group">
                         <label for="fecha"><i class="fas fa-calendar"></i> Fecha Preferida (Opcional)</label>
                         <input type="date" id="fecha" name="fecha">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="hora"><i class="fas fa-clock"></i> Horario Preferido</label>
+                        <select id="hora" name="hora" required>
+                            <option value="">Selecciona una fecha primero</option>
+                        </select>
                     </div>
                 </div>
 
@@ -503,23 +508,26 @@
 
             // Obtener datos del formulario
             const nombre = document.getElementById('nombre').value;
-            const telefono = document.getElementById('telefono').value;
             const vehiculo = document.getElementById('vehiculo').value;
             const patente = document.getElementById('patente').value.toUpperCase();
             const tipoAceite = document.getElementById('tipo-aceite').value;
             const fecha = document.getElementById('fecha').value;
+            const hora = document.getElementById('hora') ? document.getElementById('hora').value : '';
             const comentarios = document.getElementById('comentarios').value;
 
             // Crear mensaje para WhatsApp
             let mensaje = `*CONSULTA: CAMBIO DE ACEITE MOTOR*%0A%0A`;
             mensaje += `👤 *Nombre:* ${nombre}%0A`;
-            mensaje += `📱 *Teléfono:* ${telefono}%0A`;
             mensaje += `🚗 *Mi auto es:* ${vehiculo}%0A`;
             mensaje += `🔖 *Patente:* ${patente}%0A`;
             mensaje += `🛢️ *Tipo de Aceite:* ${tipoAceite}%0A`;
 
             if (fecha) {
                 mensaje += `📅 *Fecha preferida:* ${fecha}%0A`;
+            }
+
+            if (hora) {
+                mensaje += `🕒 *Horario preferido:* ${hora}%0A`;
             }
 
             if (comentarios) {
