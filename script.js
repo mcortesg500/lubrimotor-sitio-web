@@ -14,6 +14,66 @@ function getValue(id) {
 }
 
 // ========================================
+// Fechas de reserva: impedir días pasados
+// ========================================
+const DATE_ERROR_MESSAGE = 'Por favor selecciona una fecha válida. No se pueden reservar fechas pasadas.';
+
+function getTodayDateString() {
+    const now = new Date();
+    const localDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+    return localDate.toISOString().slice(0, 10);
+}
+
+function setupDateInputs() {
+    const today = getTodayDateString();
+
+    document.querySelectorAll('input[type="date"]').forEach(input => {
+        if (!input.min || input.min < today) {
+            input.min = today;
+        }
+
+        input.addEventListener('input', function() {
+            this.setCustomValidity(this.value && this.value < today ? DATE_ERROR_MESSAGE : '');
+        });
+
+        input.addEventListener('change', function() {
+            this.setCustomValidity(this.value && this.value < today ? DATE_ERROR_MESSAGE : '');
+        });
+    });
+}
+
+function validateDateFields(form) {
+    const today = getTodayDateString();
+    const dateInputs = form.querySelectorAll('input[type="date"]');
+
+    for (const input of dateInputs) {
+        if (input.value && input.value < today) {
+            input.setCustomValidity(DATE_ERROR_MESSAGE);
+            input.reportValidity();
+            input.focus();
+            return false;
+        }
+
+        input.setCustomValidity('');
+    }
+
+    return true;
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupDateInputs);
+} else {
+    setupDateInputs();
+}
+
+document.addEventListener('submit', function(event) {
+    if (!validateDateFields(event.target)) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+    }
+}, true);
+
+// ========================================
 // Widget de WhatsApp
 // ========================================
 function toggleWhatsAppChat() {
@@ -78,6 +138,10 @@ const bookingForm = document.getElementById('booking-form');
 if (bookingForm) {
     bookingForm.addEventListener('submit', function(event) {
         event.preventDefault();
+
+        if (!validateDateFields(bookingForm)) {
+            return;
+        }
 
         const nombre = getValue('nombre');
         const telefono = getValue('telefono');
