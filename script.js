@@ -17,11 +17,91 @@ function getValue(id) {
 // Fechas de reserva: impedir días pasados
 // ========================================
 const DATE_ERROR_MESSAGE = 'Por favor selecciona una fecha válida. No se pueden reservar fechas pasadas.';
+const SUNDAY_CLOSED_MESSAGE = 'Los domingos estamos cerrados. Por favor selecciona otro día.';
+const INVALID_TIME_MESSAGE = 'Por favor selecciona un horario disponible para la fecha elegida.';
+const WEEKDAY_HOURS = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
+const SATURDAY_HOURS = ['09:00', '10:00', '11:00', '12:00', '13:00'];
 
 function getTodayDateString() {
     const now = new Date();
     const localDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
     return localDate.toISOString().slice(0, 10);
+}
+
+function getLocalDateFromInput(value) {
+    const [year, month, day] = value.split('-').map(Number);
+    return new Date(year, month - 1, day);
+}
+
+function getAllowedHoursForDate(value) {
+    if (!value) {
+        return WEEKDAY_HOURS;
+    }
+
+    const day = getLocalDateFromInput(value).getDay();
+
+    if (day === 6) {
+        return SATURDAY_HOURS;
+    }
+
+    if (day === 0) {
+        return [];
+    }
+
+    return WEEKDAY_HOURS;
+}
+
+function getTimeSelectForDateInput(dateInput) {
+    const form = dateInput.closest('form');
+    return form ? form.querySelector('select[name="hora"], select#hora') : null;
+}
+
+function renderTimeOptions(select, hours) {
+    if (!select) {
+        return;
+    }
+
+    const selectedValue = select.value;
+    const placeholder = select.dataset.placeholder || select.querySelector('option[value=""]')?.textContent || 'Selecciona horario';
+    select.dataset.placeholder = placeholder;
+    select.innerHTML = '';
+
+    const placeholderOption = document.createElement('option');
+    placeholderOption.value = '';
+    placeholderOption.textContent = placeholder;
+    select.appendChild(placeholderOption);
+
+    hours.forEach(hour => {
+        const option = document.createElement('option');
+        option.value = hour;
+        option.textContent = hour;
+        select.appendChild(option);
+    });
+
+    select.value = hours.includes(selectedValue) ? selectedValue : '';
+}
+
+function updateScheduleForDateInput(input, shouldReport = false) {
+    const timeSelect = getTimeSelectForDateInput(input);
+    const allowedHours = getAllowedHoursForDate(input.value);
+
+    renderTimeOptions(timeSelect, allowedHours);
+
+    if (input.value && getLocalDateFromInput(input.value).getDay() === 0) {
+        input.setCustomValidity(SUNDAY_CLOSED_MESSAGE);
+
+        if (shouldReport) {
+            input.reportValidity();
+        }
+    } else if (input.value && input.value < getTodayDateString()) {
+        input.setCustomValidity(DATE_ERROR_MESSAGE);
+    } else {
+        input.setCustomValidity('');
+    }
+
+    if (timeSelect) {
+        timeSelect.setCustomValidity('');
+    }
 }
 
 function setupDateInputs() {
@@ -33,12 +113,14 @@ function setupDateInputs() {
         }
 
         input.addEventListener('input', function() {
-            this.setCustomValidity(this.value && this.value < today ? DATE_ERROR_MESSAGE : '');
+            updateScheduleForDateInput(this);
         });
 
         input.addEventListener('change', function() {
-            this.setCustomValidity(this.value && this.value < today ? DATE_ERROR_MESSAGE : '');
+            updateScheduleForDateInput(this, true);
         });
+
+        updateScheduleForDateInput(input);
     });
 }
 
@@ -54,7 +136,28 @@ function validateDateFields(form) {
             return false;
         }
 
+        if (input.value && getLocalDateFromInput(input.value).getDay() === 0) {
+            input.setCustomValidity(SUNDAY_CLOSED_MESSAGE);
+            input.reportValidity();
+            input.focus();
+            return false;
+        }
+
         input.setCustomValidity('');
+
+        const timeSelect = getTimeSelectForDateInput(input);
+        const allowedHours = getAllowedHoursForDate(input.value);
+
+        if (timeSelect && input.value && (!timeSelect.value || !allowedHours.includes(timeSelect.value))) {
+            timeSelect.setCustomValidity(INVALID_TIME_MESSAGE);
+            timeSelect.reportValidity();
+            timeSelect.focus();
+            return false;
+        }
+
+        if (timeSelect) {
+            timeSelect.setCustomValidity('');
+        }
     }
 
     return true;
@@ -173,6 +276,10 @@ if (bookingForm) {
         openWhatsApp(message);
         alert('✅ Tu reserva se ha enviado a WhatsApp. Pronto nos pondremos en contacto.');
         bookingForm.reset();
+        const dateInput = bookingForm.querySelector('input[type="date"]');
+        if (dateInput) {
+            updateScheduleForDateInput(dateInput);
+        }
     });
 }
 
