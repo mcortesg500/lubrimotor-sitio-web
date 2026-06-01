@@ -4,6 +4,55 @@
     box-sizing: border-box;
 }
 
+/* Navbar brand: horizontal wordmark */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    text-decoration: none;
+    min-width: 0;
+}
+
+.logo .navbar-logo-text {
+    width: clamp(280px, 24vw, 320px);
+    max-height: 60px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 1;
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
+    border: 0;
+    backdrop-filter: none;
+    filter:
+        drop-shadow(0 0 5px rgba(255, 106, 0, 0.55))
+        drop-shadow(0 0 10px rgba(255, 45, 0, 0.24))
+        drop-shadow(0 0 12px rgba(0, 140, 255, 0.28));
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.navbar-brand:hover .navbar-logo-text {
+    transform: translateY(-1px);
+    filter:
+        drop-shadow(0 0 7px rgba(255, 106, 0, 0.68))
+        drop-shadow(0 0 12px rgba(255, 45, 0, 0.30))
+        drop-shadow(0 0 16px rgba(0, 140, 255, 0.34));
+}
+
+@media (max-width: 768px) {
+    .logo .navbar-logo-text {
+        width: clamp(170px, 45vw, 190px);
+        max-height: 46px;
+    }
+}
+
+@media (max-width: 360px) {
+    .logo .navbar-logo-text {
+        width: min(170px, 48vw);
+    }
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -84,14 +133,20 @@ body {
 .hamburger {
     display: none;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     cursor: pointer;
-    padding: 0.6rem;
+    padding: 0;
     z-index: 1001;
     transition: all 0.3s ease;
+    touch-action: manipulation;
 }
 
 .hamburger:hover {
@@ -101,12 +156,14 @@ body {
 }
 
 .hamburger span {
-    width: 1.5rem;
+    display: block;
+    width: 24px;
     height: 2px;
     background: #e4e6ea;
-    margin: 2px 0;
-    transition: all 0.3s ease;
-    border-radius: 1px;
+    margin: 4px 0;
+    transform-origin: center;
+    transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+    border-radius: 2px;
 }
 
 /* NAVEGACIÓN OSCURA */
@@ -161,7 +218,7 @@ body {
 .hero {
     height: 90vh;
     background: linear-gradient(rgba(10, 15, 28, 0.6), rgba(26, 31, 46, 0.7)),
-                url('img/hero.jpg') center/cover;
+                url('img/hero-lubrimotor-futurista.png') center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1273,7 +1330,7 @@ input[type="date"]::-webkit-datetime-edit-year-field {
         align-items: center;
         gap: 2rem;
         transition: right 0.3s ease;
-        z-index: 999;
+        z-index: 1000;
         border-left: 1px solid rgba(255, 255, 255, 0.1);
     }
 
@@ -1306,7 +1363,7 @@ input[type="date"]::-webkit-datetime-edit-year-field {
     }
 
     .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
+        transform: translateY(10px) rotate(45deg);
     }
 
     .hamburger.active span:nth-child(2) {
@@ -1314,7 +1371,7 @@ input[type="date"]::-webkit-datetime-edit-year-field {
     }
 
     .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
+        transform: translateY(-10px) rotate(-45deg);
     }
 
     .hero-text h1 {
@@ -1750,13 +1807,16 @@ video {
     }
 
     .hamburger {
+        width: 42px;
+        height: 42px;
         min-width: 42px;
         min-height: 42px;
+        flex-basis: 42px;
         padding: 0.5rem;
     }
 
     .hamburger span {
-        width: 1.35rem;
+        width: 22px;
     }
 
     .nav-menu {
@@ -1847,7 +1907,7 @@ video {
         padding: 5rem 1rem 2.75rem;
         background-image:
             linear-gradient(rgba(5, 8, 16, 0.72), rgba(10, 15, 28, 0.82)),
-            url('img/hero.jpg');
+            url('img/hero-lubrimotor-futurista.png');
         background-size: cover;
         background-position: center 42%;
         background-repeat: no-repeat;
@@ -1951,7 +2011,7 @@ video {
         padding-bottom: 3rem;
         background-image:
             linear-gradient(180deg, rgba(5, 8, 16, 0.48) 0%, rgba(5, 8, 16, 0.72) 48%, rgba(5, 8, 16, 0.92) 100%),
-            url('img/hero.jpg');
+            url('img/hero-lubrimotor-futurista.png');
     }
 
     .hero-text {
@@ -2569,5 +2629,460 @@ body.home-page .mobile-reserva-bar {
         min-height: 38px;
         padding-inline: 0.82rem;
         font-size: 0.86rem;
+    }
+}
+
+/* ========================================
+   HEXAGONAL NEON PREMIUM TEXTURE
+   ======================================== */
+body {
+    background:
+        radial-gradient(circle at 12% 34%, rgba(0, 170, 255, 0.11), transparent 30%),
+        radial-gradient(circle at 88% 18%, rgba(255, 122, 24, 0.08), transparent 32%),
+        radial-gradient(circle at 76% 82%, rgba(255, 45, 0, 0.045), transparent 28%),
+        linear-gradient(30deg, rgba(255, 255, 255, 0.010) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.010) 87.5%),
+        linear-gradient(150deg, rgba(255, 255, 255, 0.007) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.007) 87.5%),
+        linear-gradient(180deg, #05080d 0%, #08111c 45%, #05080d 100%);
+    background-size: auto, auto, auto, 42px 72px, 42px 72px, auto;
+    background-position: center, center, center, 0 0, 21px 36px, center;
+    background-attachment: fixed;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.20;
+    background-image:
+        radial-gradient(circle at center, rgba(0, 170, 255, 0.07) 1px, transparent 1.5px),
+        linear-gradient(30deg, rgba(255, 255, 255, 0.014) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.014) 87.5%),
+        linear-gradient(150deg, rgba(255, 255, 255, 0.011) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.011) 87.5%),
+        linear-gradient(30deg, rgba(255, 255, 255, 0.009) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.009) 87.5%),
+        linear-gradient(150deg, rgba(255, 255, 255, 0.007) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.007) 87.5%);
+    background-size: 42px 72px;
+    background-position: 0 0, 0 0, 0 0, 21px 36px, 21px 36px;
+}
+
+.navbar {
+    overflow: hidden;
+}
+
+.navbar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.24;
+    background:
+        radial-gradient(circle at 18% 50%, rgba(0, 170, 255, 0.10), transparent 32%),
+        radial-gradient(circle at 82% 45%, rgba(255, 122, 24, 0.065), transparent 34%),
+        linear-gradient(30deg, rgba(255, 255, 255, 0.012) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.012) 87.5%),
+        linear-gradient(150deg, rgba(255, 255, 255, 0.009) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.009) 87.5%);
+    background-size: auto, auto, 40px 69px, 40px 69px;
+}
+
+.navbar-container {
+    position: relative;
+    z-index: 1;
+}
+
+.sobre-nosotros,
+.servicios,
+.paquetes,
+.ubicacion,
+.citas-online,
+.contacto {
+    background-image:
+        radial-gradient(circle at 18% 10%, rgba(0, 170, 255, 0.040), transparent 34%),
+        radial-gradient(circle at 88% 16%, rgba(255, 122, 24, 0.032), transparent 32%),
+        linear-gradient(30deg, rgba(255, 255, 255, 0.008) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.008) 87.5%),
+        linear-gradient(150deg, rgba(255, 255, 255, 0.006) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.006) 87.5%);
+    background-size: auto, auto, 44px 76px, 44px 76px;
+    background-blend-mode: screen, screen, normal, normal;
+}
+
+.service-card,
+.paquete-card,
+.trust-item,
+.ubicacion-content,
+.formulario-citas,
+.disponibilidad,
+.contacto-item,
+.whatsapp-chat,
+.mobile-reserva-bar {
+    background-image:
+        radial-gradient(circle at 18% 0%, rgba(0, 170, 255, 0.065), transparent 34%),
+        radial-gradient(circle at 88% 100%, rgba(255, 122, 24, 0.052), transparent 34%),
+        linear-gradient(30deg, rgba(255, 255, 255, 0.010) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.010) 87.5%),
+        linear-gradient(150deg, rgba(255, 255, 255, 0.007) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.007) 87.5%),
+        linear-gradient(180deg, rgba(10, 22, 36, 0.92), rgba(4, 9, 16, 0.97));
+    background-size: auto, auto, 38px 66px, 38px 66px, auto;
+    background-blend-mode: screen, screen, normal, normal, normal;
+}
+
+.service-card:hover,
+.paquete-card:hover,
+.trust-item:hover,
+.contacto-item:hover {
+    border-color: rgba(255, 122, 24, 0.40);
+    box-shadow:
+        0 22px 48px rgba(0, 0, 0, 0.46),
+        0 0 22px rgba(0, 170, 255, 0.14),
+        0 0 18px rgba(255, 122, 24, 0.12);
+}
+
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+    }
+
+    body::before {
+        opacity: 0.16;
+        background-size: 48px 83px;
+    }
+
+    .navbar::before {
+        opacity: 0.18;
+    }
+
+    .service-card,
+    .paquete-card,
+    .trust-item,
+    .ubicacion-content,
+    .formulario-citas,
+    .disponibilidad,
+    .contacto-item,
+    .whatsapp-chat,
+    .mobile-reserva-bar {
+        background-image:
+            radial-gradient(circle at 18% 0%, rgba(0, 170, 255, 0.050), transparent 34%),
+            radial-gradient(circle at 88% 100%, rgba(255, 122, 24, 0.040), transparent 34%),
+            linear-gradient(30deg, rgba(255, 255, 255, 0.007) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.007) 87.5%),
+            linear-gradient(150deg, rgba(255, 255, 255, 0.005) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.005) 87.5%),
+            linear-gradient(180deg, rgba(10, 22, 36, 0.94), rgba(4, 9, 16, 0.98));
+    }
+}
+
+/* ========================================
+   HOME HERO - FUTURISTIC LUBRIMOTOR IMAGE
+   ======================================== */
+.hero,
+body.home-page .hero {
+    position: relative;
+    height: auto;
+    min-height: calc(100vh - 86px);
+    overflow: hidden;
+    background-image: url('img/hero-lubrimotor-futurista.png');
+    background-size: cover;
+    background-position: 62% center;
+    background-repeat: no-repeat;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background:
+        radial-gradient(circle at 22% 35%, rgba(0, 170, 255, 0.16), transparent 34%),
+        radial-gradient(circle at 78% 42%, rgba(255, 122, 24, 0.10), transparent 32%),
+        linear-gradient(90deg, rgba(5, 8, 13, 0.66), rgba(5, 8, 13, 0.42), rgba(5, 8, 13, 0.52)),
+        linear-gradient(180deg, rgba(5, 8, 13, 0.24), rgba(5, 8, 13, 0.68));
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    background:
+        radial-gradient(circle at center, transparent 34%, rgba(0, 0, 0, 0.38) 100%),
+        linear-gradient(180deg, transparent 0%, rgba(5, 8, 13, 0.58) 100%);
+}
+
+.hero-text {
+    position: relative;
+    z-index: 3;
+}
+
+.hero-text h1 {
+    color: #f5f7fa;
+    text-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.88),
+        0 0 14px rgba(0, 170, 255, 0.20);
+}
+
+.hero-text p {
+    color: #d6dde6;
+    text-shadow: 0 4px 14px rgba(0, 0, 0, 0.72);
+}
+
+@media (max-width: 768px) {
+    .hero,
+    body.home-page .hero {
+        min-height: calc(100svh - 76px);
+        padding: 120px 18px 70px;
+        background-image: url('img/hero-lubrimotor-futurista.png');
+        background-position: 68% center;
+        align-items: center;
+    }
+
+    .hero::before {
+        background:
+            linear-gradient(180deg, rgba(5, 8, 13, 0.52), rgba(5, 8, 13, 0.78)),
+            linear-gradient(90deg, rgba(5, 8, 13, 0.68), rgba(5, 8, 13, 0.42));
+    }
+
+    .hero::after {
+        background:
+            radial-gradient(circle at 72% 42%, transparent 26%, rgba(0, 0, 0, 0.26) 100%),
+            linear-gradient(180deg, transparent 0%, rgba(5, 8, 13, 0.58) 100%);
+    }
+
+    body.home-page .hero-text {
+        max-width: min(100%, 340px);
+    }
+}
+
+@media (max-width: 430px) {
+    .hero,
+    body.home-page .hero {
+        min-height: calc(100svh - 70px);
+        padding: 108px 16px 62px;
+        background-position: 70% center;
+    }
+}
+
+/* ========================================
+   FINAL MOBILE UX PASS
+   ======================================== */
+:root {
+    --color-orange: #ff7a18;
+    --color-orange-dark: #e85d04;
+    --color-orange-soft: #ff8f2a;
+    --color-blue: #00aaff;
+    --color-bg: #05080d;
+    --color-bg-soft: #08111c;
+    --color-text: #f5f7fa;
+    --color-muted: #c9d1d9;
+}
+
+html {
+    scroll-padding-top: 120px;
+}
+
+section[id],
+#inicio,
+#nosotros,
+#servicios,
+#reservar,
+#reservas,
+#contacto {
+    scroll-margin-top: 125px;
+}
+
+.logo,
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+}
+
+.logo .navbar-logo-text {
+    width: clamp(195px, 25vw, 420px);
+    max-height: 76px;
+    filter:
+        drop-shadow(0 0 5px rgba(255, 122, 24, 0.50))
+        drop-shadow(0 0 10px rgba(232, 93, 4, 0.22))
+        drop-shadow(0 0 16px rgba(0, 170, 255, 0.38))
+        drop-shadow(0 0 28px rgba(0, 170, 255, 0.18));
+}
+
+.boton-hero,
+.btn-cta,
+.btn-reservar,
+.btn-paquete.primary,
+.mobile-reserva-bar a {
+    background: linear-gradient(135deg, var(--color-orange-soft) 0%, var(--color-orange-dark) 100%) !important;
+    border-color: rgba(255, 122, 24, 0.58) !important;
+    box-shadow:
+        0 0 10px rgba(255, 122, 24, 0.30),
+        0 0 20px rgba(232, 93, 4, 0.12),
+        0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.sobre-nosotros h2,
+.servicios h2,
+.paquetes h2,
+.ubicacion h2,
+.citas-online h2,
+.contacto h2,
+.servicio-titulo {
+    color: var(--color-orange-soft);
+    text-shadow:
+        0 0 10px rgba(255, 122, 24, 0.18),
+        0 0 18px rgba(0, 170, 255, 0.07);
+}
+
+.hero,
+body.home-page .hero {
+    min-height: calc(100vh - 86px);
+    background-image: url('img/hero-lubrimotor-futurista.png');
+    background-position: 62% center;
+}
+
+.hero::before {
+    background:
+        radial-gradient(circle at 22% 35%, rgba(0, 170, 255, 0.14), transparent 34%),
+        radial-gradient(circle at 78% 42%, rgba(255, 122, 24, 0.09), transparent 32%),
+        linear-gradient(90deg, rgba(5, 8, 13, 0.58), rgba(5, 8, 13, 0.34), rgba(5, 8, 13, 0.46)),
+        linear-gradient(180deg, rgba(5, 8, 13, 0.18), rgba(5, 8, 13, 0.60));
+}
+
+.hero::after {
+    background:
+        radial-gradient(circle at center, transparent 32%, rgba(0, 0, 0, 0.36) 100%),
+        linear-gradient(180deg, transparent 0%, rgba(5, 8, 13, 0.58) 100%);
+}
+
+@media (max-width: 768px) {
+    html {
+        scroll-padding-top: 95px;
+    }
+
+    section[id],
+    #inicio,
+    #nosotros,
+    #servicios,
+    #reservar,
+    #reservas,
+    #contacto {
+        scroll-margin-top: 100px;
+    }
+
+    .logo .navbar-logo-text {
+        width: 205px;
+        max-height: 52px;
+    }
+
+    .nav-menu,
+    .nav-links,
+    .mobile-menu {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100svh;
+        min-height: 100vh;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 14px;
+        padding: 5.25rem 1rem 2rem;
+        background:
+            radial-gradient(circle at 50% 10%, rgba(255, 122, 24, 0.10), transparent 32%),
+            radial-gradient(circle at 20% 20%, rgba(0, 170, 255, 0.12), transparent 34%),
+            rgba(3, 8, 14, 0.94);
+        backdrop-filter: blur(14px);
+        z-index: 9998;
+        overflow-y: auto;
+    }
+
+    .nav-menu.active,
+    .nav-menu.open,
+    .nav-links.active,
+    .nav-links.open,
+    .mobile-menu.active,
+    .mobile-menu.open {
+        display: flex;
+        right: 0;
+    }
+
+    .hamburger,
+    .menu-toggle,
+    .mobile-menu-toggle {
+        position: relative;
+        z-index: 9999;
+    }
+
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    .hero,
+    body.home-page .hero {
+        min-height: calc(100svh - 76px);
+        padding: 120px 18px 90px;
+        background-image: url('img/hero-lubrimotor-futurista.png');
+        background-size: cover;
+        background-position: 78% center;
+        background-repeat: no-repeat;
+        box-shadow: inset 0 -70px 74px rgba(5, 8, 16, 0.38);
+    }
+
+    .hero::before {
+        background:
+            linear-gradient(180deg, rgba(5, 8, 13, 0.22), rgba(5, 8, 13, 0.52)),
+            linear-gradient(90deg, rgba(5, 8, 13, 0.32), rgba(5, 8, 13, 0.16), rgba(5, 8, 13, 0.32));
+    }
+
+    .hero::after {
+        background:
+            radial-gradient(circle at center, transparent 36%, rgba(0, 0, 0, 0.24) 100%),
+            linear-gradient(180deg, transparent 0%, rgba(5, 8, 13, 0.42) 100%);
+    }
+
+    .hero-text,
+    body.home-page .hero-text {
+        background: rgba(3, 8, 14, 0.18);
+        backdrop-filter: blur(2px);
+        border-radius: 22px;
+        padding: 18px 14px;
+    }
+
+    body {
+        padding-bottom: 82px;
+    }
+
+    body.home-page {
+        padding-bottom: 82px;
+    }
+
+    .whatsapp-widget {
+        right: 18px;
+        bottom: 96px;
+        z-index: 9997;
+    }
+
+    body.home-page .whatsapp-widget {
+        right: 18px;
+        bottom: 104px;
+    }
+
+    .whatsapp-button {
+        width: 52px;
+        height: 52px;
+    }
+
+    body.home-page .mobile-reserva-bar {
+        min-height: 68px;
+        padding: 10px 14px;
+        background: rgba(3, 8, 14, 0.92);
+        backdrop-filter: blur(14px);
+        border-top: 1px solid rgba(255, 122, 24, 0.18);
+        box-shadow: 0 -10px 26px rgba(0, 0, 0, 0.38);
+    }
+}
+
+@media (max-width: 420px) {
+    .logo .navbar-logo-text {
+        width: 195px;
+        max-height: 50px;
     }
 }
