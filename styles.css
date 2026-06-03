@@ -1313,41 +1313,76 @@ input[type="date"]::-webkit-datetime-edit-year-field {
         background-position: center center;
     }
 
+    .navbar {
+        overflow: visible;
+        --mobile-navbar-height: 64px;
+    }
+
     .hamburger {
         display: flex;
+        position: relative;
+        z-index: 1002;
+        border-color: rgba(255, 159, 67, 0.28);
+        background: rgba(255, 159, 67, 0.08);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
     }
 
     .nav-menu {
         position: fixed;
-        top: 0;
-        right: -100%;
+        top: var(--mobile-navbar-height);
+        right: 0;
+        left: 0;
         width: 100%;
-        height: 100vh;
-        background: rgba(10, 15, 28, 0.95);
-        backdrop-filter: blur(30px);
+        height: auto;
+        max-height: calc(100svh - var(--mobile-navbar-height));
+        display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        gap: 2rem;
-        transition: right 0.3s ease;
-        z-index: 1000;
-        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        justify-content: flex-start;
+        gap: 0.75rem;
+        padding: 1rem 1rem 1.25rem;
+        background:
+            radial-gradient(circle at 50% 0%, rgba(255, 159, 67, 0.18), transparent 35%),
+            radial-gradient(circle at 20% 20%, rgba(0, 170, 255, 0.12), transparent 34%),
+            rgba(5, 8, 16, 0.98);
+        backdrop-filter: blur(24px);
+        border-top: 1px solid rgba(255, 159, 67, 0.18);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.42);
+        border-left: 0;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+        z-index: 1001;
+        overflow-y: auto;
+        overflow-x: hidden;
+        overscroll-behavior: contain;
     }
 
     .nav-menu.active {
-        right: 0;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
     }
 
     .nav-link {
-        font-size: 1.2rem;
-        padding: 1.2rem 2.5rem;
-        width: 85%;
+        width: min(100%, 340px);
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        padding: 0.9rem 1rem;
         text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        margin: 0.5rem 0;
-        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 159, 67, 0.18);
+        margin: 0;
+        background: rgba(255, 255, 255, 0.065);
         backdrop-filter: blur(15px);
         color: #ffffff;
+        border-radius: 14px;
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
     }
 
     .nav-link:hover {
@@ -1532,7 +1567,7 @@ body {
 }
 
 body.menu-open {
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 img,
@@ -1577,34 +1612,6 @@ video {
     .logo img {
         max-width: 160px;
         height: 2.4rem;
-    }
-
-    .hamburger {
-        min-width: 44px;
-        min-height: 44px;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .nav-menu {
-        top: 0;
-        left: auto;
-        padding: 5rem 1rem 2rem;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        justify-content: flex-start;
-        gap: 0.75rem;
-    }
-
-    .nav-link {
-        width: min(100%, 340px);
-        min-height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1rem;
-        padding: 0.9rem 1rem;
-        margin: 0;
     }
 
     .hero {
@@ -1806,28 +1813,8 @@ video {
         padding-block: 0.45rem;
     }
 
-    .hamburger {
-        width: 42px;
-        height: 42px;
-        min-width: 42px;
-        min-height: 42px;
-        flex-basis: 42px;
-        padding: 0.5rem;
-    }
-
-    .hamburger span {
-        width: 22px;
-    }
-
-    .nav-menu {
-        padding: 4.25rem 0.75rem 1.25rem;
-        gap: 0.55rem;
-    }
-
-    .nav-link {
-        min-height: 46px;
-        font-size: 0.95rem;
-        padding: 0.75rem 0.9rem;
+    .navbar {
+        --mobile-navbar-height: 58px;
     }
 
     .hero {
@@ -1976,30 +1963,6 @@ video {
     .logo img {
         border-radius: 10px;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
-    }
-
-    .hamburger {
-        border-color: rgba(255, 159, 67, 0.28);
-        background: rgba(255, 159, 67, 0.08);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
-    }
-
-    .hamburger span {
-        background: #ffffff;
-    }
-
-    .nav-menu {
-        background:
-            radial-gradient(circle at 50% 0%, rgba(255, 159, 67, 0.18), transparent 35%),
-            rgba(5, 8, 16, 0.97);
-        border-left: 0;
-    }
-
-    .nav-link {
-        border-radius: 14px;
-        border-color: rgba(255, 159, 67, 0.18);
-        background: rgba(255, 255, 255, 0.065);
-        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
     }
 
     .nav-link.btn-cta {
@@ -2666,7 +2629,7 @@ body::before {
 }
 
 .navbar {
-    overflow: hidden;
+    overflow: visible;
 }
 
 .navbar::before {
@@ -2969,50 +2932,6 @@ body.home-page .hero {
     .logo .navbar-logo-text {
         width: 205px;
         max-height: 52px;
-    }
-
-    .nav-menu,
-    .nav-links,
-    .mobile-menu {
-        position: fixed;
-        inset: 0;
-        width: 100%;
-        height: 100svh;
-        min-height: 100vh;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 14px;
-        padding: 5.25rem 1rem 2rem;
-        background:
-            radial-gradient(circle at 50% 10%, rgba(255, 122, 24, 0.10), transparent 32%),
-            radial-gradient(circle at 20% 20%, rgba(0, 170, 255, 0.12), transparent 34%),
-            rgba(3, 8, 14, 0.94);
-        backdrop-filter: blur(14px);
-        z-index: 9998;
-        overflow-y: auto;
-    }
-
-    .nav-menu.active,
-    .nav-menu.open,
-    .nav-links.active,
-    .nav-links.open,
-    .mobile-menu.active,
-    .mobile-menu.open {
-        display: flex;
-        right: 0;
-    }
-
-    .hamburger,
-    .menu-toggle,
-    .mobile-menu-toggle {
-        position: relative;
-        z-index: 9999;
-    }
-
-    body.menu-open {
-        overflow: hidden;
     }
 
     .hero,
